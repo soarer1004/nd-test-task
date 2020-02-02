@@ -2,6 +2,9 @@
   flex: 4
   position: relative
   overflow: hidden
+  &:hover
+    .image-change
+      opacity: 1
 
 .image-change
   position: absolute
@@ -14,6 +17,10 @@
   color: #fff
   text-decoration: none
   z-index: 5
+  opacity: 0
+  transition: opacity .3s
+  &:hover
+    background: rgba(0, 0, 0, 0.45)
   &.right
     right: 0
 
