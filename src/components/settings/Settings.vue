@@ -13,19 +13,31 @@
           Режим отображения
         </h3>
         <label for="display-full">
-          <input id="display-full" type="radio">
+          <input id="display-full"
+                 type="radio"
+                 :value="displayType.FULL"
+                 v-model="selectedDisplayType">
           Отобразить целиком
         </label>
         <label for="display-square">
-          <input id="display-square" type="radio">
+          <input id="display-square"
+                 type="radio"
+                 :value="displayType.SQUARE"
+                 v-model="selectedDisplayType">
           Отобразить в режиме 1:1
         </label>
         <label for="display-vertical">
-          <input id="display-vertical" type="radio">
+          <input id="display-vertical"
+                 type="radio"
+                 :value="displayType.FIT_VERTICALLY"
+                 v-model="selectedDisplayType">
           Вписать по вертикали
         </label>
         <label for="display-horizontal">
-          <input id="display-horizontal" type="radio">
+          <input id="display-horizontal"
+                 type="radio"
+                 :value="displayType.FIT_HORIZONTALLY"
+                 v-model="selectedDisplayType">
           Вписать по горизонтали
         </label>
       </div>
