@@ -3,7 +3,7 @@
  */
 enum DisplayType {
     FULL,
-    SQUARE,
+    NATURAL,
     FIT_VERTICALLY,
     FIT_HORIZONTALLY,
 }

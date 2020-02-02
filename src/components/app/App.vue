@@ -1,6 +1,7 @@
 <template>
-  <div id="app-container">
+  <div id="app-container" :class="{ view: isImageViewVisible }">
     <settings/>
+    <image-view v-if="isImageViewVisible"/>
   </div>
 </template>
 

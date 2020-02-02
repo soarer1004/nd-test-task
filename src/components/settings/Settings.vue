@@ -22,7 +22,7 @@
         <label for="display-square">
           <input id="display-square"
                  type="radio"
-                 :value="displayType.SQUARE"
+                 :value="displayType.NATURAL"
                  v-model="selectedDisplayType">
           Отобразить в режиме 1:1
         </label>
@@ -41,7 +41,10 @@
           Вписать по горизонтали
         </label>
       </div>
-      <button type="button" class="default-button settings-block">
+      <button type="button"
+              class="default-button settings-block"
+              :disabled="imagesList.length === 0"
+              @click="toViewState">
         Просмотр
       </button>
     </div>

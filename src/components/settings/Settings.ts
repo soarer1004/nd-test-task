@@ -2,9 +2,10 @@ import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { Getter, Mutation } from 'vuex-class';
 
+import AppState from '@/models/AppState';
 import DisplayType from '@/models/DisplayType';
-import { IMAGES_DISPLAY_TYPE } from '@/store/root/getters';
-import { SET_IMAGES_DISPLAY_TYPE } from '@/store/root/mutations';
+import { IMAGES_DISPLAY_TYPE, IMAGES_LIST } from '@/store/root/getters';
+import { SET_APP_STATE, SET_IMAGES_DISPLAY_TYPE, SET_IMAGES_LIST } from '@/store/root/mutations';
 
 
 @Component
@@ -13,8 +14,17 @@ export default class Settings extends Vue {
     @Getter(IMAGES_DISPLAY_TYPE)
     public imagesDisplayType: DisplayType;
 
+    @Getter(IMAGES_LIST)
+    public imagesList: File[];
+
     @Mutation(SET_IMAGES_DISPLAY_TYPE)
     public setImagesDisplayType: (type: DisplayType) => void;
+
+    @Mutation(SET_APP_STATE)
+    public setAppState: (state: AppState) => void;
+
+    @Mutation(SET_IMAGES_LIST)
+    public setImagesList: (images: File[]) => void;
 
     public displayType = DisplayType;
 
@@ -27,7 +37,19 @@ export default class Settings extends Vue {
     }
 
     public handleFilesChange(event: any) {
+        if (!event || !event.target || !event.target.files) {
+            return;
+        }
+        this.setImagesList([...event.target.files].filter((file: File) => {
+            return file.type && file.type.match(/image\/.*/);
+        }));
+    }
 
+    public toViewState() {
+        if (this.imagesList.length === 0) {
+            return;
+        }
+        this.setAppState(AppState.VIEW);
     }
 
 }

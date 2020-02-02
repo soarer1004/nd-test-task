@@ -7,6 +7,7 @@
 .settings-container
   padding 15px
   align-items: flex-end
+  flex: 1
 
 .settings-block
   margin-bottom: 30px
@@ -39,5 +40,9 @@
   padding: 10px 15px
   background: transparent
   cursor: pointer
+  &[disabled]
+    border-color: $border-color-light
+    cursor: auto
   &:hover
-    border-color: $border-color-dark
+    &:not([disabled])
+      border-color: $border-color-dark
