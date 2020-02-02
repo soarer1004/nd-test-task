@@ -1,19 +1,17 @@
 import Vue from 'vue';
-import { Component, Watch } from 'vue-property-decorator';
-import { Getter } from 'vuex-class';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 
 import DisplayType from '@/models/DisplayType';
-import { IMAGES_DISPLAY_TYPE, IMAGES_LIST } from '@/store/root/getters';
 
 
 @Component
 export default class ImageView extends Vue {
 
-    @Getter(IMAGES_LIST)
-    public imagesList: File[];
+    @Prop()
+    public displayType: DisplayType;
 
-    @Getter(IMAGES_DISPLAY_TYPE)
-    public imagesDisplayType: DisplayType;
+    @Prop()
+    public image: File;
 
     public readonly $refs: {
         canvas: HTMLCanvasElement;
@@ -37,25 +35,25 @@ export default class ImageView extends Vue {
             image.onload = () => {
                 this.drawImageOnCanvas(image);
             };
-            image.src = URL.createObjectURL(this.imagesList[0]);
+            image.src = URL.createObjectURL(this.image);
         }
     }
 
     public drawImageOnCanvas(image: HTMLImageElement) {
         const imageRatio = image.naturalWidth / image.naturalHeight;
-        if (this.imagesDisplayType === DisplayType.NATURAL) {
+        if (this.displayType === DisplayType.NATURAL) {
             this.canvasWidth = image.naturalWidth;
             this.canvasHeight = image.naturalHeight;
         }
-        if (this.imagesDisplayType === DisplayType.FIT_VERTICALLY) {
+        if (this.displayType === DisplayType.FIT_VERTICALLY) {
             this.canvasHeight = this.$refs.imageContainer.clientHeight;
             this.canvasWidth = this.canvasHeight * imageRatio;
         }
-        if (this.imagesDisplayType === DisplayType.FIT_HORIZONTALLY) {
+        if (this.displayType === DisplayType.FIT_HORIZONTALLY) {
             this.canvasWidth = this.$refs.imageContainer.clientWidth;
             this.canvasHeight = this.canvasWidth * imageRatio;
         }
-        if (this.imagesDisplayType === DisplayType.FULL) {
+        if (this.displayType === DisplayType.FULL) {
             // TODO improve
         }
         this.$refs.canvas.width = this.canvasWidth;
@@ -69,7 +67,7 @@ export default class ImageView extends Vue {
         );
     }
 
-    @Watch('imagesDisplayType')
+    @Watch('displayType')
     public onImagesDisplayTypeChange() {
         this.loadImage();
     }
