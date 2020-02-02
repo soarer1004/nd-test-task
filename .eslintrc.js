@@ -6,8 +6,6 @@ module.exports = {
   'extends': [
     'plugin:vue/essential',
     '@vue/standard'
-    // 'plugin:@typescript-eslint/eslint-recommended',
-    // 'plugin:@typescript-eslint/recommended'
   ],
   plugins: [
     '@typescript-eslint'
@@ -25,6 +23,14 @@ module.exports = {
       rules: {
         'semi': 'off',
         'comma-dangle': ['error', 'always-multiline'],
+        'no-multiple-empty-lines': ['error', { 'max': 2 }],
+        'indent': ['error', 4],
+        'space-before-function-paren': ['error', {
+          'anonymous': 'never',
+          'named': 'never',
+          'asyncArrow': 'always'
+        }],
+        'padded-blocks': ['error', { 'blocks': 'never', 'classes': 'always' }],
         '@typescript-eslint/semi': ['error'],
         '@typescript-eslint/member-delimiter-style': ['error']
       }
