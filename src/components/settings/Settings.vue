@@ -1,6 +1,7 @@
 <template>
     <div class="settings-container"
-         :class="{ 'hidden-mobile': (appState === appStates.VIEW) && !isMobileMenuVisible }">
+         :class="{ 'hidden-mobile': (appState === appStates.VIEW) && !isMobileMenuVisible,
+          'mobile-menu': (appState === appStates.VIEW) && isMobileMenuVisible }">
       <label for="select-files" class="files-selector settings-block">
         Выберите директорию
         <input id="select-files"

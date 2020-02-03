@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-header-container hidden-desktop"
        @click="switchMobileMenuVisibility">
-    Настройки
+    {{ isMobileMenuVisible ? 'Закрыть настройки' : 'Настройки' }}
   </div>
 </template>
 

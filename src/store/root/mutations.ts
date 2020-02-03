@@ -25,8 +25,13 @@ export function setImagesList(state: RootState, images: File[]) {
     state.imagesList = images;
 }
 
-export function switchMobileMenuVisibility(state: RootState) {
-    state.isMobileMenuVisible = !state.isMobileMenuVisible;
+export function switchMobileMenuVisibility(
+    state: RootState,
+    isVisible?: boolean,
+) {
+    state.isMobileMenuVisible = isVisible === undefined
+        ? !state.isMobileMenuVisible
+        : isVisible;
 }
 
 export default {

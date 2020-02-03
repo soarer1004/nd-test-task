@@ -1,4 +1,5 @@
 @require '~styles/colors'
+@require '~styles/sizes'
 
 .settings-container, .display-options-container
   display: flex
@@ -9,6 +10,15 @@
   align-items: flex-end
   flex: 1
   min-width: 250px
+  background: $background-color-light
+  &.mobile-menu
+    position: absolute
+    top: $mobile-header-height
+    height: 'calc(100% - %s - %s * 2)' % ($mobile-header-height @padding)
+    left: 0
+    width: 250px
+    border-right: 1px solid $border-color-dark
+    z-index: 5
 
 .settings-block
   margin-bottom: 30px
