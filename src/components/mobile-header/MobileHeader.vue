@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-header-container hidden-desktop"
-       @click="switchMobileMenuVisibility">
+       @click="() => switchMobileMenuVisibility()">
     {{ isMobileMenuVisible ? 'Закрыть настройки' : 'Настройки' }}
   </div>
 </template>
