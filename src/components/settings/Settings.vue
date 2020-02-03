@@ -1,7 +1,7 @@
 <template>
     <div class="settings-container"
-         :class="{ 'hidden-mobile': (appState === appStates.VIEW) && !isMobileMenuVisible,
-          'mobile-menu': (appState === appStates.VIEW) && isMobileMenuVisible }">
+         :class="{ 'hidden-mobile': isViewState && !isMobileMenuVisible,
+          'mobile-menu': isViewState && isMobileMenuVisible }">
       <label for="select-files" class="files-selector settings-block">
         Выберите папку с изображениями
         <input id="select-files"
@@ -47,7 +47,7 @@
         </label>
       </div>
       <div class="buttons-container settings-block">
-        <button v-show="(appState === appStates.VIEW)"
+        <button v-show="isViewState"
                 type="button"
                 class="default-button"
                 @click="() => setAppState(appStates.SETTINGS)">

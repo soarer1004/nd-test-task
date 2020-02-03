@@ -39,6 +39,10 @@ export default class Settings extends Vue {
 
     public appStates = AppState;
 
+    public get isViewState(): boolean {
+        return (this.appState === AppState.VIEW);
+    }
+
     public get selectedDisplayType(): DisplayType {
         return this.imagesDisplayType;
     }
