@@ -1,6 +1,3 @@
-/**
- * TODO add docs
- */
 enum AppState {
     SETTINGS,
     VIEW,

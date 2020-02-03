@@ -1,6 +1,3 @@
-/**
- * TODO add docs.
- */
 enum DisplayType {
     FULL,
     NATURAL,
