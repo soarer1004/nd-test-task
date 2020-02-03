@@ -2,6 +2,8 @@
   flex: 4
   position: relative
   overflow: hidden
+  display: flex
+  justify-content: center
   &:hover
     .image-change
       opacity: 1
@@ -23,6 +25,14 @@
     background: rgba(0, 0, 0, 0.45)
   &.right
     right: 0
+  &.left
+    left: 0
+
+.images-counter
+  position: absolute
+  top: 20px
+  z-index: 5
+  background: rgba(255, 255, 255, 0.4)
 
 .slide-right-enter-active
   animation: slide-right .3s

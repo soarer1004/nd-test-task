@@ -29,15 +29,18 @@ export default class ImagesSlider extends Vue {
         this.activeImage = this.imagesList[0];
     }
 
+    public get currentImageIndex() {
+        return this.imagesList.findIndex(
+            ({ name }) => name === this.activeImage!.name,
+        );
+    }
+
     public showNextImage() {
         if (!this.activeImage || this.imagesList.length <= 1) {
             return;
         }
         this.transitionName = 'slide-right';
-        const index = this.imagesList.findIndex(
-            ({ name }) => name === this.activeImage!.name,
-        );
-        let nextImage = this.imagesList[index + 1];
+        let nextImage = this.imagesList[this.currentImageIndex + 1];
         if (!nextImage) {
             nextImage = this.imagesList[0];
         }
@@ -49,10 +52,7 @@ export default class ImagesSlider extends Vue {
             return;
         }
         this.transitionName = 'slide-left';
-        const index = this.imagesList.findIndex(
-            ({ name }) => name === this.activeImage!.name,
-        );
-        let previousImage = this.imagesList[index - 1];
+        let previousImage = this.imagesList[this.currentImageIndex - 1];
         if (!previousImage) {
             previousImage = this.imagesList[this.imagesList.length - 1];
         }

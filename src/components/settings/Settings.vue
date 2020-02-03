@@ -3,13 +3,16 @@
          :class="{ 'hidden-mobile': (appState === appStates.VIEW) && !isMobileMenuVisible,
           'mobile-menu': (appState === appStates.VIEW) && isMobileMenuVisible }">
       <label for="select-files" class="files-selector settings-block">
-        Выберите директорию
+        Выберите папку с изображениями
         <input id="select-files"
                type="file"
                accept="image/*"
                webkitdirectory directory multiple
                @change="handleFilesChange">
       </label>
+      <div class="selected-images-counter settings-block">
+        Выбрано изображений: {{ imagesList.length }}
+      </div>
       <div class="display-options-container settings-block">
         <h3 class="block-header">
           Режим отображения

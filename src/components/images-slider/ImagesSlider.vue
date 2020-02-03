@@ -9,7 +9,9 @@
               @click="showNextImage"> >
       </button>
     </template>
-
+    <div class="images-counter">
+      {{ currentImageIndex + 1 }} / {{ imagesList.length }}
+    </div>
     <transition :name="transitionName">
       <image-view :image="activeImage"
                   :key="activeImage.name"
