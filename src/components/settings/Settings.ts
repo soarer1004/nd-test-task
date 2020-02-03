@@ -37,8 +37,6 @@ export default class Settings extends Vue {
 
     public displayType = DisplayType;
 
-    public appStates = AppState;
-
     public get isViewState(): boolean {
         return (this.appState === AppState.VIEW);
     }
@@ -66,6 +64,14 @@ export default class Settings extends Vue {
         }
         this.switchMobileMenuVisibility(false);
         this.setAppState(AppState.VIEW);
+    }
+
+    public switchState() {
+        if (this.isViewState) {
+            this.setAppState(AppState.SETTINGS);
+        } else {
+            this.toViewState();
+        }
     }
 
 }

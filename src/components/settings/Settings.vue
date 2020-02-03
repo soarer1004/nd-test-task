@@ -46,21 +46,13 @@
           Вписать по горизонтали
         </label>
       </div>
-      <div class="buttons-container settings-block">
-        <button v-show="isViewState"
-                type="button"
-                class="default-button"
-                @click="() => setAppState(appStates.SETTINGS)">
-          Назад
-        </button>
         <button type="button"
-                class="default-button"
-                :disabled="(imagesList.length === 0)"
-                @click="toViewState">
-          Просмотр
+                class="default-button settings-block"
+                :disabled="(imagesList.length === 0) && !isViewState"
+                @click="switchState">
+          {{ isViewState ? 'Назад' : 'Просмотр' }}
         </button>
       </div>
-    </div>
 </template>
 
 <script lang="ts" src="./Settings.ts"></script>

@@ -9,14 +9,19 @@
               @click="showNextImage"> >
       </button>
     </template>
-    <div class="images-counter">
+    <div v-if="imagesList.length !== 0" class="images-counter">
       {{ currentImageIndex + 1 }} / {{ imagesList.length }}
     </div>
-    <transition :name="transitionName">
-      <image-view :image="activeImage"
-                  :key="activeImage.name"
-                  :displayType="imagesDisplayType"/>
-    </transition>
+    <template v-if="imagesList.length !== 0">
+      <transition :name="transitionName">
+        <image-view :image="activeImage"
+                    :key="activeImage.name"
+                    :displayType="imagesDisplayType"/>
+      </transition>
+    </template>
+    <template v-else>
+      Не выбрано ни одного изображения
+    </template>
   </div>
 </template>
 

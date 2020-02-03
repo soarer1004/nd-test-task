@@ -1,6 +1,6 @@
 import Hammer from 'hammerjs';
 import Vue from 'vue';
-import { Component } from 'vue-property-decorator';
+import { Component, Watch } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
 
 import DisplayType from '@/models/DisplayType';
@@ -83,6 +83,17 @@ export default class ImagesSlider extends Vue {
         if (this.hammerManager) {
             this.hammerManager.off('swipeleft swiperight');
             this.hammerManager.destroy();
+        }
+    }
+
+    @Watch('imagesList')
+    public onImagesListChange() {
+        if (this.imagesList.length === 0) {
+            this.activeImage = null;
+            return;
+        }
+        if (!this.activeImage || !this.imagesList.includes(this.activeImage)) {
+            this.activeImage = this.imagesList[0];
         }
     }
 
