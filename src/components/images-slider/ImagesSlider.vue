@@ -1,5 +1,5 @@
 <template>
-  <div class="images-slider-container">
+  <div class="images-slider-container" ref="sliderContainer">
     <template v-if="imagesList.length > 1">
       <button class="image-change left hidden-mobile"
               @click="showPreviousImage">

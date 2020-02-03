@@ -1,3 +1,4 @@
+import Hammer from 'hammerjs';
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import { Getter } from 'vuex-class';
@@ -15,6 +16,10 @@ import ImageView from '@/components/image-view/ImageView.vue';
 })
 export default class ImagesSlider extends Vue {
 
+    public readonly $refs: {
+        sliderContainer: HTMLElement;
+    };
+
     @Getter(IMAGES_LIST)
     public imagesList: File[];
 
@@ -25,9 +30,7 @@ export default class ImagesSlider extends Vue {
 
     public transitionName: 'slide-right' | 'slide-left' = 'slide-right';
 
-    public created() {
-        this.activeImage = this.imagesList[0];
-    }
+    public hammerManager: HammerManager | null = null;
 
     public get currentImageIndex() {
         return this.imagesList.findIndex(
@@ -57,6 +60,30 @@ export default class ImagesSlider extends Vue {
             previousImage = this.imagesList[this.imagesList.length - 1];
         }
         this.activeImage = previousImage;
+    }
+
+    public created() {
+        this.activeImage = this.imagesList[0];
+    }
+
+    public mounted() {
+        this.hammerManager = new Hammer.Manager(this.$refs.sliderContainer, {
+            recognizers: [
+                [
+                    Hammer.Swipe,
+                    { direction: Hammer.DIRECTION_HORIZONTAL },
+                ],
+            ],
+        });
+        this.hammerManager.on('swipeleft', this.showNextImage);
+        this.hammerManager.on('swiperight', this.showPreviousImage);
+    }
+
+    public beforeDestroy() {
+        if (this.hammerManager) {
+            this.hammerManager.off('swipeleft swiperight');
+            this.hammerManager.destroy();
+        }
     }
 
 }
