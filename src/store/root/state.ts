@@ -7,7 +7,7 @@ import DisplayType from '@/models/DisplayType';
  */
 export default class RootState {
 
-    public imagesDisplayType: DisplayType = DisplayType.FULL;
+    public imagesDisplayType: DisplayType = DisplayType.CONTAIN;
 
     public appState: AppState = AppState.SETTINGS;
 

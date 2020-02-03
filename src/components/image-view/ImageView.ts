@@ -24,11 +24,6 @@ export default class ImageView extends Vue {
 
     public canvasHeight: number = 0;
 
-    public mounted() {
-        this.canvasContext = this.$refs.canvas.getContext('2d');
-        this.loadImage();
-    }
-
     public loadImage() {
         if (this.canvasContext) {
             const image = new Image();
@@ -39,6 +34,16 @@ export default class ImageView extends Vue {
         }
     }
 
+    public fitImageHorizontally(ratio: number) {
+        this.canvasWidth = this.$refs.imageContainer.clientWidth;
+        this.canvasHeight = this.canvasWidth * ratio;
+    }
+
+    public fitImageVertically(ratio: number) {
+        this.canvasHeight = this.$refs.imageContainer.clientHeight;
+        this.canvasWidth = this.canvasHeight * ratio;
+    }
+
     public drawImageOnCanvas(image: HTMLImageElement) {
         const imageRatio = image.naturalWidth / image.naturalHeight;
         if (this.displayType === DisplayType.NATURAL) {
@@ -46,15 +51,17 @@ export default class ImageView extends Vue {
             this.canvasHeight = image.naturalHeight;
         }
         if (this.displayType === DisplayType.FIT_VERTICALLY) {
-            this.canvasHeight = this.$refs.imageContainer.clientHeight;
-            this.canvasWidth = this.canvasHeight * imageRatio;
+            this.fitImageVertically(imageRatio);
         }
         if (this.displayType === DisplayType.FIT_HORIZONTALLY) {
-            this.canvasWidth = this.$refs.imageContainer.clientWidth;
-            this.canvasHeight = this.canvasWidth * imageRatio;
+            this.fitImageHorizontally(imageRatio);
         }
-        if (this.displayType === DisplayType.FULL) {
-            // TODO improve
+        if (this.displayType === DisplayType.CONTAIN) {
+            if (imageRatio > 1) {
+                this.fitImageHorizontally(imageRatio);
+            } else {
+                this.fitImageVertically(imageRatio);
+            }
         }
         this.$refs.canvas.width = this.canvasWidth;
         this.$refs.canvas.height = this.canvasHeight;
@@ -65,6 +72,11 @@ export default class ImageView extends Vue {
             this.canvasWidth,
             this.canvasHeight,
         );
+    }
+
+    public mounted() {
+        this.canvasContext = this.$refs.canvas.getContext('2d');
+        this.loadImage();
     }
 
     @Watch('displayType')

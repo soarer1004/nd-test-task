@@ -1,5 +1,5 @@
 enum DisplayType {
-    FULL,
+    CONTAIN,
     NATURAL,
     FIT_VERTICALLY,
     FIT_HORIZONTALLY,

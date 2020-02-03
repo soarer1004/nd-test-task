@@ -20,7 +20,7 @@
         <label for="display-full">
           <input id="display-full"
                  type="radio"
-                 :value="displayType.FULL"
+                 :value="displayType.CONTAIN"
                  v-model="selectedDisplayType">
           Отобразить целиком
         </label>
