@@ -13,7 +13,13 @@ module.exports = {
   rules: {
     'no-console': 'error',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'max-len': ['error', 80]
+    'max-len': [
+      'error',
+      {
+        code: 80,
+        ignorePattern: '^\\s*import\\s.+from'
+      }
+    ]
   },
   parserOptions: {
     parser: '@typescript-eslint/parser'
@@ -23,10 +29,10 @@ module.exports = {
       files: ['*.ts'],
       rules: {
         'semi': 'off',
+        'no-unused-vars': 'off',
         'comma-dangle': ['error', 'always-multiline'],
         'no-multiple-empty-lines': ['error', { 'max': 2 }],
         'indent': ['error', 4],
-        'no-unused-vars': 'off',
         'space-before-function-paren': ['error', {
           'anonymous': 'never',
           'named': 'never',

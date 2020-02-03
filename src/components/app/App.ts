@@ -25,4 +25,5 @@ export default class App extends Vue {
     public get isImageViewVisible() {
         return this.appState === AppState.VIEW;
     }
+
 }

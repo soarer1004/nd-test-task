@@ -3,10 +3,11 @@
     <template v-if="imagesList.length > 1">
       <button class="image-change left hidden-mobile"
               @click="showPreviousImage">
-        <
+        &lt;
       </button>
       <button class="image-change right hidden-mobile"
-              @click="showNextImage"> >
+              @click="showNextImage">
+        &gt;
       </button>
     </template>
     <div v-if="imagesList.length !== 0" class="images-counter">
