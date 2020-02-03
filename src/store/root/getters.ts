@@ -11,6 +11,8 @@ export const IMAGES_DISPLAY_TYPE = 'getImagesDisplayType';
 
 export const IMAGES_LIST = 'getImagesList';
 
+export const IS_MOBILE_MENU_VISIBLE = 'getIsMobileMenuVisible';
+
 export function getAppState(state: RootState): AppState {
     return state.appState;
 }
@@ -23,8 +25,13 @@ export function getImagesList(state: RootState): File[] {
     return state.imagesList;
 }
 
+export function getIsMobileMenuVisible(state: RootState): boolean {
+    return state.isMobileMenuVisible;
+}
+
 export default {
     getAppState,
     getImagesDisplayType,
     getImagesList,
+    getIsMobileMenuVisible,
 } as GetterTree<RootState, any>;

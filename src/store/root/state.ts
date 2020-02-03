@@ -12,4 +12,7 @@ export default class RootState {
     public appState: AppState = AppState.SETTINGS;
 
     public imagesList: File[] = [];
+
+    public isMobileMenuVisible: boolean = false;
+
 }

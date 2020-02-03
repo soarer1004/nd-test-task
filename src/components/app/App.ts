@@ -6,6 +6,7 @@ import AppState from '@/models/AppState';
 import { APP_STATE } from '@/store/root/getters';
 
 import ImagesSlider from '@/components/images-slider/ImagesSlider.vue';
+import MobileHeader from '@/components/mobile-header/MobileHeader.vue';
 import Settings from '@/components/settings/Settings.vue';
 
 
@@ -13,6 +14,7 @@ import Settings from '@/components/settings/Settings.vue';
     components: {
         Settings,
         ImagesSlider,
+        MobileHeader,
     },
 })
 export default class App extends Vue {

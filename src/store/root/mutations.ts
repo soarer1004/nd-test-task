@@ -11,6 +11,8 @@ export const SET_IMAGES_DISPLAY_TYPE = 'setImagesDisplayType';
 
 export const SET_IMAGES_LIST = 'setImagesList';
 
+export const SWITCH_MOBILE_MENU_VISIBILITY = 'switchMobileMenuVisibility';
+
 export function setAppState(state: RootState, appState: AppState) {
     state.appState = appState;
 }
@@ -23,8 +25,13 @@ export function setImagesList(state: RootState, images: File[]) {
     state.imagesList = images;
 }
 
+export function switchMobileMenuVisibility(state: RootState) {
+    state.isMobileMenuVisible = !state.isMobileMenuVisible;
+}
+
 export default {
     setAppState,
     setImagesDisplayType,
     setImagesList,
+    switchMobileMenuVisibility,
 } as MutationTree<RootState>;

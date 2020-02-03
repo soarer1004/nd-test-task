@@ -1,7 +1,10 @@
 <template>
   <div id="app-container" :class="{ view: isImageViewVisible }">
-    <settings/>
-    <images-slider v-if="isImageViewVisible"/>
+    <mobile-header/>
+    <div class="content">
+      <settings/>
+      <images-slider v-if="isImageViewVisible"/>
+    </div>
   </div>
 </template>
 

@@ -4,7 +4,7 @@ import { Getter, Mutation } from 'vuex-class';
 
 import AppState from '@/models/AppState';
 import DisplayType from '@/models/DisplayType';
-import { APP_STATE, IMAGES_DISPLAY_TYPE, IMAGES_LIST } from '@/store/root/getters';
+import { APP_STATE, IMAGES_DISPLAY_TYPE, IMAGES_LIST, IS_MOBILE_MENU_VISIBLE } from '@/store/root/getters';
 import { SET_APP_STATE, SET_IMAGES_DISPLAY_TYPE, SET_IMAGES_LIST } from '@/store/root/mutations';
 
 
@@ -19,6 +19,9 @@ export default class Settings extends Vue {
 
     @Getter(APP_STATE)
     public appState: AppState;
+
+    @Getter(IS_MOBILE_MENU_VISIBLE)
+    public isMobileMenuVisible: boolean;
 
     @Mutation(SET_IMAGES_DISPLAY_TYPE)
     public setImagesDisplayType: (type: DisplayType) => void;

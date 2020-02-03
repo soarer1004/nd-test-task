@@ -1,11 +1,11 @@
 <template>
   <div class="images-slider-container">
     <template v-if="imagesList.length > 1">
-      <button class="image-change left"
+      <button class="image-change left hidden-mobile"
               @click="showPreviousImage">
         <
       </button>
-      <button class="image-change right"
+      <button class="image-change right hidden-mobile"
               @click="showNextImage"> >
       </button>
     </template>
