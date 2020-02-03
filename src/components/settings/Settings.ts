@@ -4,7 +4,7 @@ import { Getter, Mutation } from 'vuex-class';
 
 import AppState from '@/models/AppState';
 import DisplayType from '@/models/DisplayType';
-import { IMAGES_DISPLAY_TYPE, IMAGES_LIST } from '@/store/root/getters';
+import { APP_STATE, IMAGES_DISPLAY_TYPE, IMAGES_LIST } from '@/store/root/getters';
 import { SET_APP_STATE, SET_IMAGES_DISPLAY_TYPE, SET_IMAGES_LIST } from '@/store/root/mutations';
 
 
@@ -17,6 +17,9 @@ export default class Settings extends Vue {
     @Getter(IMAGES_LIST)
     public imagesList: File[];
 
+    @Getter(APP_STATE)
+    public appState: AppState;
+
     @Mutation(SET_IMAGES_DISPLAY_TYPE)
     public setImagesDisplayType: (type: DisplayType) => void;
 
@@ -27,6 +30,8 @@ export default class Settings extends Vue {
     public setImagesList: (images: File[]) => void;
 
     public displayType = DisplayType;
+
+    public appStates = AppState;
 
     public get selectedDisplayType(): DisplayType {
         return this.imagesDisplayType;

@@ -41,12 +41,20 @@
           Вписать по горизонтали
         </label>
       </div>
-      <button type="button"
-              class="default-button settings-block"
-              :disabled="imagesList.length === 0"
-              @click="toViewState">
-        Просмотр
-      </button>
+      <div class="buttons-container settings-block">
+        <button v-show="appState === appStates.VIEW"
+                type="button"
+                class="default-button"
+                @click="() => setAppState(appStates.SETTINGS)">
+          Назад
+        </button>
+        <button type="button"
+                class="default-button"
+                :disabled="imagesList.length === 0"
+                @click="toViewState">
+          Просмотр
+        </button>
+      </div>
     </div>
 </template>
 
